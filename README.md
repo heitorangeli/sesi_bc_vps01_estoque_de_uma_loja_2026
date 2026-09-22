@@ -29,3 +29,10 @@
 | Movimentacao de equipe | quantidade | Inteiro | 11 | Quantidade movimentada |
 | Movimentacao de equipe | tipo | Texto | 10 | Tipo de movimentação (Entrada, Saída) |
 | Movimentacao de equipe | data | Data | - | Data e hora da movimentação |
+
+## MER e DER:
+- Conceitual:
+![a](/md_conceitual.png)
+- Lógico:
+  <br>
+![b](/md_logico.png)
