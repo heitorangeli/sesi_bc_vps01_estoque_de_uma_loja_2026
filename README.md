@@ -36,3 +36,109 @@
 - Lógico:
   <br>
 ![b](/md_logico.png)
+
+## Arquivos CSV:
+[produtos](fornecedor.csv)<br>
+[fornecedor.csv](./fornecedor.csv)<br>
+[categoria.csv](./categoria.csv)<br>
+[produtos.csv](./produtos.csv)<br>
+[estoque.csv](./estoque.csv)<br>
+
+## Scripts:
+DDL:
+```SQL
+drop database if exists gestao_roupas;
+create database gestao_roupas;
+use gestao_roupas;
+
+create table fornecedor (
+    id int not null primary key auto_increment,
+    razao_social varchar(100) not null,
+    nome_fantasia varchar(150) not null,
+    cnpj varchar(18) not null,
+    telefone varchar(20) not null,
+    email varchar(100) not null,
+    endereco varchar(100) not null
+);
+
+create table categoria (
+    id int not null primary key auto_increment,
+    nome varchar(100) not null,
+    descricao varchar(100)
+);
+
+create table produtos (
+    id int not null primary key auto_increment,
+    nome varchar(100) not null,
+    preco decimal(10,2) not null,
+    quantidade int not null,
+    marca varchar(100) not null,
+    id_fornecedor int not null,
+    id_categoria int not null
+);
+
+create table estoque (
+    id_estoque int not null primary key auto_increment,
+    id_produto int not null,
+    quantidade int not null,
+    quantidade_minima int not null
+);
+
+create table movimentacao (
+    id_movimentacao int not null primary key auto_increment,
+    id_produto int not null,
+    tipo enum('Entrada', 'Saída') not null,
+    quantidade int not null,
+    data DATE not null default(CURDATE())
+);
+
+
+
+alter table produtos add constraint fk_produtos_fornecedor foreign key (id_fornecedor) references fornecedor(id);
+alter table produtos add constraint fk_produtos_categoria foreign key (id_categoria) references categoria(id);
+alter table estoque add constraint fk_estoque_produtos foreign key (id_produto) references produtos(id);
+alter table movimentacao add constraint fk_movimentacao_produtos foreign key (id_produto) references produtos(id);
+
+describe fornecedor;
+describe categoria;
+describe produtos;
+describe estoque;
+describe movimentacao;
+show tables;
+```
+DML:
+```SQL
+use gestao_roupas;
+
+insert into fornecedor (razao_social, nome_fantasia, cnpj, telefone, email, endereco) values
+("Loja boa LTDA", "Loja boa", "1234567890123", "10123456789", "lojaboa@gmail.com", "Rua A 1"),
+("Loja bacana LTDA", "Loja bacana", "12345678901234", "10222222222", "lojabacana@gmail.com", "Rua B 2"),
+("Loja barata LTDA", "Loja barata", "123456789012345", "10333333333", "lojabarata@gmail.com", "Rua C 3");
+
+insert into categoria (nome, descricao) values
+("Camisas", "Camisas verdejantes"),
+("Calcas", "Calcas pomposas"),
+("Meias", "Meias radiantes");
+
+insert into produtos (nome, preco, quantidade, marca, id_fornecedor, id_categoria) values
+("Camisa Azul", 50.00, 10, "Marca amigável", 1, 1),
+("Calca verde vômito", 100.00, 5, "Marca boa", 2, 2),
+("Meia laranja", 10.00, 50, "Marca criativa", 3, 3);
+
+insert into estoque (id_produto, quantidade, quantidade_minima) values
+(1, 10, 2),
+(2, 5, 1),
+(3, 50, 10);
+
+insert into movimentacao (id_produto, tipo, quantidade, data) values
+(1, "Entrada", 1, "2026-09-01 10:55:55"),
+(2, "Saída", 2, "2026-09-02 14:30:30"),
+(3, "Entrada", 3, "2026-09-03 09:15:15");
+
+
+select * from fornecedor;
+select * from categoria;
+select * from produtos;
+select * from estoque;
+select * from movimentacao;
+```
