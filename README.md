@@ -38,7 +38,7 @@
 ![b](/md_logico.png)
 
 ## Arquivos CSV:
-[produtos](fornecedor.csv)<br>
+[produtos.csv](fornecedor.csv)<br>
 [fornecedor.csv](./fornecedor.csv)<br>
 [categoria.csv](./categoria.csv)<br>
 [produtos.csv](./produtos.csv)<br>
