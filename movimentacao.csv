@@ -1,0 +1,4 @@
+id_movimentacao,id_produto,tipo,quantidade,data
+1,1,Entrada,1,2026-11-01 10:55:55
+2,2,Saida,2,2026-11-02 14:30:30
+3,3,Entrada,3,2026-11-03 09:15:15

@@ -1,0 +1,4 @@
+id,nome,preco,quantidade,marca,id_fornecedor,id_categoria
+1,Camisa azul,50.00,10,Marca amigável,1,1
+2,Calca verde vômito,100.00,5,Marca boa,2,2
+3,Meia laranja,10.00,50,Marca criativa,3,3

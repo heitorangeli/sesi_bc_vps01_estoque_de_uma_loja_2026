@@ -1,43 +1,58 @@
-drop database if exists gestao_pedidos;
-create database gestao_pedidos;
-use gestao_pedidos;
-create table produtos(
+drop database if exists gestao_roupas;
+create database gestao_roupas;
+use gestao_roupas;
+
+create table fornecedor (
+    id int not null primary key auto_increment,
+    razao_social varchar(100) not null,
+    nome_fantasia varchar(150) not null,
+    cnpj varchar(18) not null,
+    telefone varchar(20) not null,
+    email varchar(100) not null,
+    endereco varchar(100) not null
+);
+
+create table categoria (
+    id int not null primary key auto_increment,
+    nome varchar(100) not null,
+    descricao varchar(100)
+);
+
+create table produtos (
     id int not null primary key auto_increment,
     nome varchar(100) not null,
     preco decimal(10,2) not null,
     quantidade int not null,
-    marca text(100),
+    marca varchar(100) not null,
     id_fornecedor int not null,
-    id_categoria int not null,
+    id_categoria int not null
 );
-create table telefone(
-    id int not null primary key auto_increment,
-    id_cliente int not null,
-    numero varchar(100) not null unique,
-    tipo enum('Residencial', 'Comercial', 'Celular') not null
-);
-create table fornecedor(
-    id int not null primary key auto_increment,
-    nome varchar(100) not null,
-    cnpj texto(11) not null,
-    numero varchar(10),
-    complemento varchar(100)
-);
-create table pedido(
-    id int not null primary key auto_increment,
-    id_cliente int not null,
+
+create table estoque (
+    id_estoque int not null primary key auto_increment,
     id_produto int not null,
     quantidade int not null,
-    valor_unitario decimal(10,2) not null,
-    subtotal decimal(10,2) default (valor_unitario * quantidade)
+    quantidade_minima int not null
 );
 
-alter table telefone add constraint fk_telefones foreign key (id_cliente) references cliente(id);
-alter table pedido add constraint fk_faz foreign key (id_cliente) references cliente(id);
-alter table pedido add constraint fk_possui foreign key (id_produto) references produto(id);
+create table movimentacao (
+    id_movimentacao int not null primary key auto_increment,
+    id_produto int not null,
+    tipo enum('Entrada', 'Saída') not null,
+    quantidade int not null,
+    data DATE not null default(CURDATE())
+);
 
-describe produto;
-describe telefone;
-describe cliente;
-describe pedido;
+
+
+alter table produtos add constraint fk_produtos_fornecedor foreign key (id_fornecedor) references fornecedor(id);
+alter table produtos add constraint fk_produtos_categoria foreign key (id_categoria) references categoria(id);
+alter table estoque add constraint fk_estoque_produtos foreign key (id_produto) references produtos(id);
+alter table movimentacao add constraint fk_movimentacao_produtos foreign key (id_produto) references produtos(id);
+
+describe fornecedor;
+describe categoria;
+describe produtos;
+describe estoque;
+describe movimentacao;
 show tables;

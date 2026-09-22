@@ -1,0 +1,4 @@
+id,razao_social,nome_fantasia,cnpj,telefone,email,endereco
+1,Loja boa LTDA,Loja boa,1234567890123,10111111111,lojaboa@gmail.com,Rua A 1
+2,Loja barata LTDA,Loja barata,12345678901234,10222222222,lojabarata@gmail.com,Rua B 2
+3,Loja bacana LTDA,Loja bacana,123456789012345,10333333333,lojabacana@gmail.com,Rua C 3
