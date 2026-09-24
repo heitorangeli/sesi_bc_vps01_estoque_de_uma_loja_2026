@@ -31,10 +31,9 @@
 | Movimentacao de equipe | data | Data | - | Data e hora da movimentação |
 
 ## MER e DER:
-- Conceitual:
+- ### Conceitual:
 ![a](/md_conceitual.png)
-- Lógico:
-  <br>
+- ### Lógico:
 ![b](/md_logico.png)
 
 ## Arquivos CSV:
