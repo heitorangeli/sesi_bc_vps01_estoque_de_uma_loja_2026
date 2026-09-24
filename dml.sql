@@ -21,9 +21,9 @@ insert into estoque (id_produto, quantidade, quantidade_minima) values
 (3, 50, 10);
 
 insert into movimentacao (id_produto, tipo, quantidade, data) values
-(1, "Entrada", 1, "2026-09-01 10:55:55"),
-(2, "Saída", 2, "2026-09-02 14:30:30"),
-(3, "Entrada", 3, "2026-09-03 09:15:15");
+(1, "Entrada", 1, "2026-09-01"),
+(2, "Saída", 2, "2026-09-02"),
+(3, "Entrada", 3, "2026-09-03");
 
 
 select * from fornecedor;

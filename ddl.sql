@@ -45,10 +45,10 @@ create table movimentacao (
 
 
 
-alter table produtos add constraint fk_produtos_fornecedor foreign key (id_fornecedor) references fornecedor(id);
-alter table produtos add constraint fk_produtos_categoria foreign key (id_categoria) references categoria(id);
-alter table estoque add constraint fk_estoque_produtos foreign key (id_produto) references produtos(id);
-alter table movimentacao add constraint fk_movimentacao_produtos foreign key (id_produto) references produtos(id);
+alter table produtos add constraint fk_fornece foreign key (id_fornecedor) references fornecedor(id);
+alter table produtos add constraint fk_possui foreign key (id_categoria) references categoria(id);
+alter table estoque add constraint fk_esta_no foreign key (id_produto) references produtos(id);
+alter table movimentacao add constraint fk_movimentado foreign key (id_produto) references produtos(id);
 
 describe fornecedor;
 describe categoria;
